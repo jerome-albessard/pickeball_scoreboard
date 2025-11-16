@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pickleball Scoreboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>Tableau de score Pickleball</h1>
+        <p>
+          Assistant complet pour suivre le score, annoncer les serveurs et valider
+          chaque échange selon les règles officielles.
+        </p>
+      </header>
+
+      <section class="scoreboard" aria-live="polite">
+        <article class="team" id="team-a">
+          <div class="team-header">
+            <h2 id="team-a-name">Équipe A</h2>
+            <button class="btn-text" data-target="team-a">Modifier</button>
+          </div>
+          <p class="score" id="team-a-score">0</p>
+          <div class="players" data-team="a">
+            <button class="player-name" data-player="a-0">Joueuse/Joueur A1</button>
+            <button class="player-name" data-player="a-1">Joueuse/Joueur A2</button>
+          </div>
+        </article>
+
+        <div class="control-stack">
+          <section class="actions actions-inline">
+            <h3>Actions rapides</h3>
+            <p class="server-note">
+              Une seule équipe au service peut marquer. Utilisez « Faute de service »
+              pour appliquer la rotation officielle : au début du match seul le
+              serveur 1 sert, puis chaque équipe dispose de deux serveurs.
+            </p>
+            <div class="actions-grid">
+              <button class="btn" data-action="point" data-team="a">Point équipe A</button>
+              <button class="btn" data-action="point" data-team="b">Point équipe B</button>
+              <button class="btn" data-action="fault">Faute de service</button>
+              <button class="btn" data-action="assign" data-team="a">Donner le service à l'équipe A</button>
+              <button class="btn" data-action="assign" data-team="b">Donner le service à l'équipe B</button>
+              <button class="btn" data-action="undo">Annuler la dernière action</button>
+            </div>
+          </section>
+
+          <article class="match-panel">
+            <div class="server" id="server-indicator">
+              Service : <span id="server-team">Équipe A</span>
+              — <span id="server-player">Joueuse/Joueur A1</span>
+            </div>
+            <div class="status-grid">
+              <div>
+                <p class="label">Score</p>
+                <p id="status-score">Équipe A 0 – 0 Équipe B</p>
+              </div>
+              <div>
+                <p class="label">Serveur actuel</p>
+                <p id="status-server">Équipe A, serveur 1</p>
+              </div>
+              <div>
+                <p class="label">Côté du service</p>
+                <p id="status-side">droite</p>
+              </div>
+              <div>
+                <p class="label">Prochaine annonce</p>
+                <p id="status-call">0-0-1</p>
+              </div>
+            </div>
+            <div class="status-message" id="status-message" role="status">
+              Match prêt. Service pour l'équipe A.
+            </div>
+            <div class="last-action">
+              <p class="label">Dernière action</p>
+              <p id="last-action">Match prêt.</p>
+            </div>
+            <div class="game-point" id="game-point"></div>
+          </article>
+        </div>
+
+        <article class="team" id="team-b">
+          <div class="team-header">
+            <h2 id="team-b-name">Équipe B</h2>
+            <button class="btn-text" data-target="team-b">Modifier</button>
+          </div>
+          <p class="score" id="team-b-score">0</p>
+          <div class="players" data-team="b">
+            <button class="player-name" data-player="b-0">Joueuse/Joueur B1</button>
+            <button class="player-name" data-player="b-1">Joueuse/Joueur B2</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="details">
+        <div class="input-group">
+          <label for="points-to-win">Points pour gagner</label>
+          <input type="number" id="points-to-win" min="1" value="11" />
+        </div>
+        <div class="input-group">
+          <label for="win-by">Victoire par</label>
+          <input type="number" id="win-by" min="1" value="2" />
+        </div>
+        <div class="input-group">
+          <span class="label">Format</span>
+          <div class="toggle" role="group" aria-label="Format du match">
+            <button class="btn" data-mode="doubles" aria-pressed="true">Doubles</button>
+            <button class="btn" data-mode="singles" aria-pressed="false">Simples</button>
+          </div>
+        </div>
+        <button class="btn" id="reset">Nouvelle partie</button>
+      </section>
+
+      
+    </div>
+    <dialog id="name-dialog">
+      <form method="dialog">
+        <h3 id="dialog-title">Nom de l'équipe</h3>
+        <input type="text" id="team-name-input" required />
+        <div class="dialog-actions">
+          <button class="btn-text" value="cancel">Annuler</button>
+          <button class="btn" value="confirm">Confirmer</button>
+        </div>
+      </form>
+    </dialog>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
