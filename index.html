@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pickleball Scoreboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>Tableau de score Pickleball</h1>
+        <p>Suivez vos matchs en temps réel.</p>
+      </header>
+
+      <section class="scoreboard" aria-live="polite">
+        <div class="team" id="team-a">
+          <div class="team-header">
+            <h2 id="team-a-name">Équipe A</h2>
+            <button class="btn-text" data-target="team-a">Modifier</button>
+          </div>
+          <p class="score" id="team-a-score">0</p>
+          <div class="controls">
+            <button class="btn" data-action="increment" data-team="a">+1</button>
+            <button class="btn" data-action="decrement" data-team="a">-1</button>
+          </div>
+        </div>
+
+        <div class="match-info">
+          <div class="server" id="server-indicator">
+            Service : <span id="server-name">Équipe A</span>
+          </div>
+          <button class="btn" id="switch-server">Changer de serveur</button>
+          <div class="game-point" id="game-point"></div>
+        </div>
+
+        <div class="team" id="team-b">
+          <div class="team-header">
+            <h2 id="team-b-name">Équipe B</h2>
+            <button class="btn-text" data-target="team-b">Modifier</button>
+          </div>
+          <p class="score" id="team-b-score">0</p>
+          <div class="controls">
+            <button class="btn" data-action="increment" data-team="b">+1</button>
+            <button class="btn" data-action="decrement" data-team="b">-1</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="details">
+        <div class="input-group">
+          <label for="points-to-win">Points pour gagner</label>
+          <input type="number" id="points-to-win" min="1" value="11" />
+        </div>
+        <div class="input-group">
+          <label for="win-by">Victoire par</label>
+          <input type="number" id="win-by" min="1" value="2" />
+        </div>
+        <button class="btn" id="reset">Nouvelle partie</button>
+      </section>
+    </div>
+    <dialog id="name-dialog">
+      <form method="dialog">
+        <h3>Nom de l'équipe</h3>
+        <input type="text" id="team-name-input" required />
+        <div class="dialog-actions">
+          <button class="btn-text" value="cancel">Annuler</button>
+          <button class="btn" value="confirm">Confirmer</button>
+        </div>
+      </form>
+    </dialog>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
