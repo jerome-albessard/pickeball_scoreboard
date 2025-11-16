@@ -52,39 +52,6 @@
               <button class="btn" data-action="undo">Annuler la dernière action</button>
             </div>
           </section>
-
-          <article class="match-panel">
-            <div class="server" id="server-indicator">
-              Service : <span id="server-team">Équipe A</span>
-              — <span id="server-player">Joueuse/Joueur A1</span>
-            </div>
-            <div class="status-grid">
-              <div>
-                <p class="label">Score</p>
-                <p id="status-score">Équipe A 0 – 0 Équipe B</p>
-              </div>
-              <div>
-                <p class="label">Serveur actuel</p>
-                <p id="status-server">Équipe A, serveur 1</p>
-              </div>
-              <div>
-                <p class="label">Côté du service</p>
-                <p id="status-side">droite</p>
-              </div>
-              <div>
-                <p class="label">Prochaine annonce</p>
-                <p id="status-call">0-0-1</p>
-              </div>
-            </div>
-            <div class="status-message" id="status-message" role="status">
-              Match prêt. Service pour l'équipe A.
-            </div>
-            <div class="last-action">
-              <p class="label">Dernière action</p>
-              <p id="last-action">Match prêt.</p>
-            </div>
-            <div class="game-point" id="game-point"></div>
-          </article>
         </div>
 
         <article class="team" id="team-b">
@@ -97,6 +64,41 @@
             <button class="player-name" data-player="b-0">Joueuse/Joueur B1</button>
             <button class="player-name" data-player="b-1">Joueuse/Joueur B2</button>
           </div>
+        </article>
+      </section>
+
+      <section class="summary" aria-live="polite">
+        <article class="match-panel">
+          <div class="server" id="server-indicator">
+            Service : <span id="server-team">Équipe A</span>
+            — <span id="server-player">Joueuse/Joueur A1</span>
+          </div>
+          <div class="status-grid">
+            <div>
+              <p class="label">Score</p>
+              <p id="status-score">Équipe A 0 – 0 Équipe B</p>
+            </div>
+            <div>
+              <p class="label">Serveur actuel</p>
+              <p id="status-server">Équipe A, serveur 1</p>
+            </div>
+            <div>
+              <p class="label">Côté du service</p>
+              <p id="status-side">droite</p>
+            </div>
+            <div>
+              <p class="label">Prochaine annonce</p>
+              <p id="status-call">0-0-1</p>
+            </div>
+          </div>
+          <div class="status-message" id="status-message" role="status">
+            Match prêt. Service pour l'équipe A.
+          </div>
+          <div class="last-action">
+            <p class="label">Dernière action</p>
+            <p id="last-action">Match prêt.</p>
+          </div>
+          <div class="game-point" id="game-point"></div>
         </article>
       </section>
 

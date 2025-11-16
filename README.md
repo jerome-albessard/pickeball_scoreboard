@@ -7,7 +7,7 @@ automatiquement les règles du simple ou du double.
 ## Fonctionnalités clés
 
 - Cartes équipes avec noms éditables (équipe + deux joueurs) et mise en évidence du serveur actif
-- Tableau de bord central qui affiche le score officiel, le serveur en cours, le côté de service, la prochaine annonce ainsi que la dernière action enregistrée
+- Bloc résumé pleine largeur immédiatement sous les équipes, avec le score officiel, le serveur en cours, le côté de service, la prochaine annonce ainsi que la dernière action enregistrée
 - Gestion complète du format doubles/simples, y compris la règle du « serveur unique » pour le tout premier service du match
 - Boutons d'actions guidées (point, faute de service, attribution manuelle du service, annulation) qui empêchent les scénarios impossibles
 - Calcul automatique des balles de match, du message de victoire et du respect de l'écart à gagner configurable
