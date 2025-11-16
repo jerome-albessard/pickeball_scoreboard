@@ -1,0 +1,201 @@
+:root {
+  --primary: #1b998b;
+  --primary-dark: #147568;
+  --accent: #f5a623;
+  --bg: #f7f8fa;
+  --text: #1b1b1f;
+  --muted: #7b7b85;
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  margin-bottom: 0.25rem;
+}
+
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.team,
+.match-info {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgb(15 23 42 / 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.team-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.score {
+  font-size: 4rem;
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: 700;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  gap: 0.5rem;
+}
+
+.players {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.player-name {
+  border: 1px solid #d6d6de;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  text-align: center;
+  background: #f4f4f6;
+  color: var(--text);
+  cursor: pointer;
+  transition: border 0.2s ease, background 0.2s ease;
+}
+
+.player-name:hover,
+.player-name:focus-visible {
+  border-color: var(--primary);
+}
+
+.player-name.is-serving {
+  border-color: var(--accent);
+  background: #fff8ed;
+  font-weight: 600;
+}
+
+.btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: var(--primary-dark);
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.match-info {
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.server {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.server-note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.game-point {
+  color: var(--accent);
+  font-weight: 700;
+  min-height: 1.25rem;
+}
+
+.details {
+  margin-top: 2rem;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgb(15 23 42 / 0.08);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input[type='number'],
+input[type='text'] {
+  border: 1px solid #d6d6de;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+#name-dialog {
+  border: none;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: min(90vw, 360px);
+}
+
+.dialog-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+}
