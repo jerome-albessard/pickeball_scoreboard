@@ -30,21 +30,12 @@
             <button class="btn" data-action="increment" data-team="a">+1</button>
             <button class="btn" data-action="decrement" data-team="a">-1</button>
           </div>
-          <div class="players" data-team="a">
-            <button class="player-name" data-player="a-0">Joueuse/Joueur A1</button>
-            <button class="player-name" data-player="a-1">Joueuse/Joueur A2</button>
-          </div>
         </div>
 
         <div class="match-info">
           <div class="server" id="server-indicator">
-            Service : <span id="server-team">Équipe A</span>
-            — <span id="server-player">Joueuse/Joueur A1</span>
+            Service : <span id="server-name">Équipe A</span>
           </div>
-          <p class="server-note">
-            Le bouton « Changer de serveur » respecte la rotation officielle :
-            les deux joueurs d'une équipe servent avant de céder la main.
-          </p>
           <button class="btn" id="switch-server">Changer de serveur</button>
           <div class="game-point" id="game-point"></div>
         </div>
@@ -58,10 +49,6 @@
           <div class="controls">
             <button class="btn" data-action="increment" data-team="b">+1</button>
             <button class="btn" data-action="decrement" data-team="b">-1</button>
-          </div>
-          <div class="players" data-team="b">
-            <button class="player-name" data-player="b-0">Joueuse/Joueur B1</button>
-            <button class="player-name" data-player="b-1">Joueuse/Joueur B2</button>
           </div>
         </div>
       </section>
@@ -80,7 +67,7 @@
     </div>
     <dialog id="name-dialog">
       <form method="dialog">
-        <h3 id="dialog-title">Nom de l'équipe</h3>
+        <h3>Nom de l'équipe</h3>
         <input type="text" id="team-name-input" required />
         <div class="dialog-actions">
           <button class="btn-text" value="cancel">Annuler</button>

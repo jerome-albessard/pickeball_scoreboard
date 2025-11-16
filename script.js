@@ -14,8 +14,7 @@ const elements = {
     b: document.getElementById('team-b-score'),
   },
   gamePoint: document.getElementById('game-point'),
-  serverTeam: document.getElementById('server-team'),
-  serverPlayer: document.getElementById('server-player'),
+  server: document.getElementById('server-name'),
   switchServer: document.getElementById('switch-server'),
   reset: document.getElementById('reset'),
   inputs: {
@@ -23,41 +22,15 @@ const elements = {
     winBy: document.getElementById('win-by'),
   },
   dialog: document.getElementById('name-dialog'),
-  dialogTitle: document.getElementById('dialog-title'),
   dialogInput: document.getElementById('team-name-input'),
 };
 
-const playerButtons = {
-  a: [
-    document.querySelector('[data-player="a-0"]'),
-    document.querySelector('[data-player="a-1"]'),
-  ],
-  b: [
-    document.querySelector('[data-player="b-0"]'),
-    document.querySelector('[data-player="b-1"]'),
-  ],
-};
-
 const state = {
-  serverTeam: 'a',
-  serverIndex: 0,
+  server: 'a',
   pointsToWin: Number(elements.inputs.pointsToWin.value),
   winBy: Number(elements.inputs.winBy.value),
-  dialogContext: null,
+  dialogTarget: null,
 };
-
-function getServerPlayerElement() {
-  return playerButtons[state.serverTeam][state.serverIndex];
-}
-
-function updateServerDisplay() {
-  elements.serverTeam.textContent = elements.teamNames[state.serverTeam].textContent;
-  elements.serverPlayer.textContent = getServerPlayerElement().textContent;
-  document.querySelectorAll('.player-name').forEach((button) => {
-    button.classList.remove('is-serving');
-  });
-  getServerPlayerElement().classList.add('is-serving');
-}
 
 function updateScores() {
   elements.scores.a.textContent = scores.a;
@@ -107,56 +80,37 @@ function checkWinner(team) {
 }
 
 function switchServer() {
-  if (state.serverIndex === 0) {
-    state.serverIndex = 1;
-  } else {
-    state.serverTeam = state.serverTeam === 'a' ? 'b' : 'a';
-    state.serverIndex = 0;
-  }
-  updateServerDisplay();
+  state.server = state.server === 'a' ? 'b' : 'a';
+  elements.server.textContent = elements.teamNames[state.server].textContent;
 }
 
 function resetGame() {
   scores.a = 0;
   scores.b = 0;
-  state.serverTeam = 'a';
-  state.serverIndex = 0;
-  updateServerDisplay();
+  state.server = 'a';
+  elements.server.textContent = elements.teamNames[state.server].textContent;
   state.pointsToWin = Number(elements.inputs.pointsToWin.value) || 11;
   state.winBy = Number(elements.inputs.winBy.value) || 2;
   updateScores();
 }
 
-function openNameDialog({ type, team, playerIndex = null }) {
-  state.dialogContext = { type, team, playerIndex };
-  const value =
-    type === 'team'
-      ? elements.teamNames[team].textContent
-      : playerButtons[team][playerIndex].textContent;
-  elements.dialogTitle.textContent =
-    type === 'team' ? "Nom de l'équipe" : 'Nom du joueur/joueuse';
-  elements.dialogInput.value = value;
+function openNameDialog(team) {
+  state.dialogTarget = team;
+  elements.dialogInput.value = elements.teamNames[team].textContent;
   elements.dialog.showModal();
   elements.dialogInput.focus();
 }
 
 function handleDialogClose(event) {
-  if (event.target.returnValue !== 'confirm') {
-    state.dialogContext = null;
-    return;
-  }
+  if (event.target.returnValue !== 'confirm') return;
   const value = elements.dialogInput.value.trim();
   if (!value) return;
-  const context = state.dialogContext;
-  if (!context) return;
-  if (context.type === 'team') {
-    elements.teamNames[context.team].textContent = value;
-  } else {
-    playerButtons[context.team][context.playerIndex].textContent = value;
+  const target = state.dialogTarget;
+  elements.teamNames[target].textContent = value;
+  if (state.server === target) {
+    elements.server.textContent = value;
   }
-  updateServerDisplay();
   updateGamePointMessage();
-  state.dialogContext = null;
 }
 
 // Event listeners
@@ -190,14 +144,7 @@ elements.inputs.winBy.addEventListener('change', (event) => {
 elements.teamNameButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const team = button.dataset.target === 'team-a' ? 'a' : 'b';
-    openNameDialog({ type: 'team', team });
-  });
-});
-
-document.querySelectorAll('.player-name').forEach((button) => {
-  button.addEventListener('click', () => {
-    const [team, index] = button.dataset.player.split('-');
-    openNameDialog({ type: 'player', team, playerIndex: Number(index) });
+    openNameDialog(team);
   });
 });
 
